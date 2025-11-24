@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, Menu, Code, Briefcase, User, Mail, Home, ExternalLink, Github, Phone, MapPin, Download, Calendar } from 'lucide-react';
+import { X, Menu, Code, Briefcase, User, Mail, Home, ExternalLink, Github, MapPin, Download, Calendar, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import { portfolioData } from '@/lib/data';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,9 +28,29 @@ const Sidebar = () => {
   ];
 
   const contactInfo = [
-    { label: 'Email', value: 'mark@example.com', icon: Mail, href: 'mailto:mark@example.com' },
-    { label: 'Phone', value: '+62 858-3795-285', icon: Phone, href: 'tel:+628583795285' },
-    { label: 'Location', value: 'Jakarta, Indonesia', icon: MapPin },
+    { 
+      label: 'Email', 
+      value: portfolioData.contact.email, 
+      icon: Mail, 
+      href: `mailto:${portfolioData.contact.email}` 
+    },
+    { 
+      label: 'Location', 
+      value: portfolioData.contact.location, 
+      icon: MapPin 
+    },
+    { 
+      label: 'Instagram', 
+      value: portfolioData.contact.instagram, 
+      icon: ExternalLink, 
+      href: `https://instagram.com/${portfolioData.contact.instagram.replace('@', '')}` 
+    },
+    { 
+      label: 'GitHub', 
+      value: portfolioData.contact.github, 
+      icon: Github, 
+      href: `https://github.com/${portfolioData.contact.github.replace('@', '')}` 
+    },
   ];
 
   const skills = [
@@ -38,19 +59,19 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile Menu Button */}
+      {/* Mobile Menu Button - Completely Hidden on Desktop */}
       <Button
         variant="default"
         size="icon"
-        className="fixed top-4 left-4 z-40 md:hidden bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg shadow-lg"
+        className="fixed top-4 left-4 z-40 lg:hidden bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg shadow-lg"
         onClick={() => setIsOpen(true)}
       >
         <Menu className="h-5 w-5" />
       </Button>
 
-      {/* Sidebar Overlay */}
+      {/* Sidebar Overlay - Hidden on Desktop */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
+        <div className="fixed inset-0 z-50 lg:hidden">
           {/* Backdrop */}
           <div 
             className="absolute inset-0 bg-zinc-900/80 backdrop-blur-sm"
@@ -165,7 +186,7 @@ const Sidebar = () => {
                   asChild
                 >
                   <a
-                    href="https://github.com/mark"
+                    href={`https://github.com/${portfolioData.contact.github.replace('@', '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub"
@@ -180,10 +201,25 @@ const Sidebar = () => {
                   asChild
                 >
                   <a
-                    href="https://linkedin.com/in/mark"
+                    href={`https://instagram.com/${portfolioData.contact.instagram.replace('@', '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="LinkedIn"
+                    aria-label="Instagram"
+                  >
+                    <MessageCircle className="h-5 w-5" />
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white"
+                  asChild
+                >
+                  <a
+                    href={`https://tiktok.com/@${portfolioData.contact.tiktok.replace('@', '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="TikTok"
                   >
                     <ExternalLink className="h-5 w-5" />
                   </a>

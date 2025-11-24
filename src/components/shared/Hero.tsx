@@ -2,52 +2,10 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { ArrowDown, Mail, Code2, Download } from 'lucide-react';
+import { ArrowDown, Mail, Code2, Download, ArrowRight, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { portfolioData } from '@/lib/data';
 import ProfileCard from '@/components/ProfileCard';
-
-// Typewriter Effect Component
-const TypewriterText = ({ text, delay = 0 }: { text: string; delay?: number }) => {
-  const [displayedText, setDisplayedText] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      let currentIndex = 0;
-      setDisplayedText('');
-      setIsTyping(true);
-
-      const typeInterval = setInterval(() => {
-        if (currentIndex < text.length) {
-          setDisplayedText(prev => prev + text[currentIndex]);
-          currentIndex++;
-        } else {
-          setIsTyping(false);
-          clearInterval(typeInterval);
-        }
-      }, 100);
-
-      return () => clearInterval(typeInterval);
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, [text, delay]);
-
-  return (
-    <span className="font-mono text-sm">
-      {displayedText}
-      {isTyping && (
-        <motion.span
-          animate={{ opacity: [1, 0] }}
-          transition={{ duration: 0.5, repeat: Infinity }}
-          className="inline-block w-2 h-4 bg-indigo-400 ml-1"
-        />
-      )}
-    </span>
-  );
-};
 
 // Rotating Text Component
 const RotatingText = () => {
@@ -177,14 +135,6 @@ const Hero = () => {
             animate="visible"
             className="text-center lg:text-left"
           >
-            {/* Typewriter Welcome Badge */}
-            <motion.div variants={itemVariants} className="mb-6">
-              <Badge variant="secondary" className="bg-indigo-500/10 text-indigo-400 border-indigo-500/20 px-4 py-2">
-                <Code2 className="h-4 w-4 mr-2" />
-                <TypewriterText text="Welcome to my portfolio" delay={500} />
-              </Badge>
-            </motion.div>
-
             {/* Main Headline with Cinematic Blur-In */}
             <motion.h1
               variants={blurInVariants}
@@ -219,26 +169,29 @@ const Hero = () => {
             >
               <Button
                 size="lg"
-                className="bg-indigo-500 hover:bg-indigo-600 text-white px-8 py-3 text-base shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="relative overflow-hidden group bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-700 hover:via-indigo-700 hover:to-blue-700 text-white px-8 py-4 text-base font-semibold shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 border-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
                 asChild
               >
-                <a href="#projects" className="flex items-center gap-2">
-                  <Code2 className="h-4 w-4" />
-                  View My Projects
+                <a href="#projects" className="flex items-center gap-3 relative z-10">
+                  <Code2 className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                  <span>View My Projects</span>
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </a>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white px-8 py-3 text-base shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="relative overflow-hidden group border-2 border-purple-500/50 text-purple-300 hover:text-white hover:border-purple-400 hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-indigo-600/20 backdrop-blur-sm px-8 py-4 text-base font-semibold shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 before:absolute before:inset-0 before:bg-gradient-to-r before:from-purple-600/10 before:to-indigo-600/10 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
                 asChild
               >
-                <a href="#contact" className="flex items-center gap-2">
-                  <Mail className="h-4 w-4" />
-                  Contact Me
+                <a href="#contact" className="flex items-center gap-3 relative z-10">
+                  <Mail className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                  <span>Contact Me</span>
+                  <ExternalLink className="h-4 w-4 group-hover:rotate-12 transition-transform duration-300" />
                 </a>
               </Button>
             </motion.div>
+          </motion.div>
 
           {/* Right Column - Profile Card (Desktop Only) */}
           <div className="hidden lg:flex justify-center items-center">

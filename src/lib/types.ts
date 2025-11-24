@@ -15,10 +15,20 @@ export interface Experience {
   description: string[];
 }
 
+export interface ContactInfo {
+  email: string;
+  instagram: string;
+  tiktok: string;
+  github: string;
+  telegram: string;
+  location: string;
+}
+
 export interface PortfolioData {
   name: string;
   role: string;
   bio: string;
   projects: Project[];
   experience: Experience[];
+  contact: ContactInfo;
 }

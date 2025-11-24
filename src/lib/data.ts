@@ -4,6 +4,14 @@ export const portfolioData: PortfolioData = {
   name: "Mark",
   role: "Software Engineer Student",
   bio: "A vibe coder building full-stack applications with AI-driven workflows.",
+  contact: {
+    email: "admin@markxplorer.me",
+    instagram: "@_markxplorer.io",
+    tiktok: "@markxplorer969",
+    github: "@markxplorer969",
+    telegram: "@marlxplorer969",
+    location: "Karawang, Indonesia"
+  },
   projects: [
     {
       title: "MarkTools",

@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Download, Send, X, Minus, Square } from 'lucide-react';
+import { Mail, MapPin, Github, Instagram, Send, X, Minus, Square } from 'lucide-react';
+import { portfolioData } from '@/lib/data';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -82,16 +83,56 @@ export default function Contact() {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-indigo-400" />
-                  <span className="text-zinc-300">mark@example.com</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-indigo-400" />
-                  <span className="text-zinc-300">+62 858 - 3795 - 285</span>
+                  <a href={`mailto:${portfolioData.contact.email}`} className="text-zinc-300 hover:text-indigo-400 transition-colors">
+                    {portfolioData.contact.email}
+                  </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="w-5 h-5 text-indigo-400" />
-                  <span className="text-zinc-300">Jakarta, Indonesia</span>
+                  <span className="text-zinc-300">{portfolioData.contact.location}</span>
                 </div>
+              </div>
+            </div>
+
+            <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-6 border border-zinc-800">
+              <h3 className="text-xl font-semibold mb-4 text-indigo-400">Social Media</h3>
+              <div className="space-y-3">
+                <a 
+                  href={`https://instagram.com/${portfolioData.contact.instagram.replace('@', '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-zinc-300 hover:text-indigo-400 transition-colors"
+                >
+                  <Instagram className="w-5 h-5" />
+                  <span>{portfolioData.contact.instagram}</span>
+                </a>
+                <a 
+                  href={`https://tiktok.com/@${portfolioData.contact.tiktok.replace('@', '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-zinc-300 hover:text-indigo-400 transition-colors"
+                >
+                  <Send className="w-5 h-5" />
+                  <span>{portfolioData.contact.tiktok}</span>
+                </a>
+                <a 
+                  href={`https://github.com/${portfolioData.contact.github.replace('@', '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-zinc-300 hover:text-indigo-400 transition-colors"
+                >
+                  <Github className="w-5 h-5" />
+                  <span>{portfolioData.contact.github}</span>
+                </a>
+                <a 
+                  href={`https://t.me/${portfolioData.contact.telegram.replace('@', '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-zinc-300 hover:text-indigo-400 transition-colors"
+                >
+                  <Send className="w-5 h-5" />
+                  <span>{portfolioData.contact.telegram}</span>
+                </a>
               </div>
             </div>
 
@@ -150,7 +191,7 @@ export default function Contact() {
                 </div>
                 <div className="text-zinc-500">
                   <span className="text-purple-400">import</span>
-                  <span className="text-green-400"> {'{'} Mail, Phone, MapPin {'}'}</span>
+                  <span className="text-green-400"> {'{'} Mail, MapPin {'}'}</span>
                   <span className="text-purple-400"> from</span>
                   <span className="text-green-400"> 'lucide-react'</span>;
                 </div>
@@ -242,34 +283,6 @@ export default function Contact() {
             </div>
           </motion.div>
         </div>
-
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-12 text-center"
-        >
-          <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-6 border border-zinc-800 inline-block">
-            <h3 className="text-xl font-semibold mb-4 text-indigo-400">Connect With Me</h3>
-            <div className="flex gap-4 justify-center mb-4">
-              <a href="#" className="text-zinc-400 hover:text-indigo-400 transition-colors">
-                <Github className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-zinc-400 hover:text-indigo-400 transition-colors">
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-zinc-400 hover:text-indigo-400 transition-colors">
-                <Twitter className="w-6 h-6" />
-              </a>
-            </div>
-            <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded flex items-center gap-2 transition-colors mx-auto">
-              <Download className="w-4 h-4" />
-              Download CV
-            </button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
