@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { ArrowDown, Mail, Code2, Download, ArrowRight, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -65,29 +65,35 @@ const RotatingText = () => {
 };
 
 const Hero = () => {
+  // Parallax scroll hook
+  const { scrollY } = useScroll();
+  
+  // Animation variants for container
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.6,
-        staggerChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
 
+  // Animation variants for individual items
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.6,
         ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   };
 
+  // Blur-in variants for headline
   const blurInVariants = {
     hidden: { 
       filter: 'blur(10px)', 
@@ -101,11 +107,12 @@ const Hero = () => {
       transition: {
         duration: 1.2,
         ease: [0.25, 0.46, 0.45, 0.94],
-        delay: 1.5, // Start after typewriter effect begins
+        delay: 0.6, // Starts after other elements begin animating
       },
     },
   };
 
+  // Scroll indicator variants
   const scrollIconVariants = {
     hidden: { opacity: 0, y: -10 },
     visible: {
@@ -113,29 +120,86 @@ const Hero = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        delay: 3.5,
+        delay: 1.8, // Appears after all content is visible
         repeat: Infinity,
         repeatType: 'reverse',
       },
     },
   };
 
+  // Parallax transform for background elements
+  const parallaxY = scrollY * 0.5; // Slower parallax effect
+  const parallaxScale = 1 + scrollY * 0.0002; // Subtle scale effect
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950" />
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Parallax Background Layers */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950"
+        style={{
+          y: parallaxY * 0.3, // Slow parallax for background
+        }}
+      />
+      
+      {/* Parallax Gradient Overlay */}
+      <motion.div 
+        className="absolute inset-0 opacity-30"
+        style={{
+          background: 'radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%)',
+          y: parallaxY * 0.7, // Medium parallax for overlay
+          scale: parallaxScale,
+        }}
+      />
+      
+      {/* Floating Particles */}
+      <motion.div 
+        className="absolute inset-0"
+        style={{
+          y: parallaxY * 1.2, // Fast parallax for particles
+        }}
+      >
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-indigo-400/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              scale: 1 + Math.random() * 2,
+            }}
+            animate={{
+              opacity: [0.2, 0.8, 0.2],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </motion.div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Grid Layout - Mobile: Single Column, Desktop: 2 Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen">
           
-          {/* Left Column - Existing Content */}
+          {/* Left Column - Text Content with Orchestrated Timeline */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="text-center lg:text-left"
+            className="text-center lg:text-left space-y-6"
           >
-            {/* Main Headline with Cinematic Blur-In */}
+            {/* 1. Welcome Badge */}
+            <motion.div variants={itemVariants} className="mb-6">
+              <div className="inline-flex items-center bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-4 py-2 rounded-full">
+                <Code2 className="h-4 w-4 mr-2" />
+                <span className="font-mono text-sm">Welcome to my portfolio</span>
+              </div>
+            </motion.div>
+
+            {/* 2. Main Headline with Cinematic Blur-In */}
             <motion.h1
               variants={blurInVariants}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
@@ -146,7 +210,7 @@ const Hero = () => {
               </span>
             </motion.h1>
 
-            {/* Rotating Sub-headline */}
+            {/* 3. Rotating Sub-headline */}
             <motion.h2
               variants={itemVariants}
               className="text-2xl sm:text-3xl lg:text-4xl text-zinc-300 mb-6 font-light"
@@ -154,7 +218,7 @@ const Hero = () => {
               I am a <RotatingText />
             </motion.h2>
 
-            {/* Bio */}
+            {/* 4. Bio */}
             <motion.p
               variants={itemVariants}
               className="text-lg text-zinc-400 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
@@ -162,7 +226,7 @@ const Hero = () => {
               {portfolioData.bio}
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* 5. CTA Buttons */}
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
@@ -193,20 +257,30 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Profile Card (Desktop Only) */}
-          <div className="hidden lg:flex justify-center items-center">
-            <ProfileCard
-              name="Mark"
-              title="Software Engineer"
-              handle="markxplorer"
-              status="Vibe Coding"
-              avatarUrl="/avatar.png"
-              showUserInfo={false}
-              enableTilt={true}
-              enableMobileTilt={false}
-              behindGlowEnabled={true}
-              onContactClick={() => console.log('Contact clicked')}
-            />
+          {/* Right Column - Profile Card with Independent Animation */}
+          <div className="hidden lg:flex justify-center items-center h-[600px]">
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 1, 
+                ease: "easeOut", 
+                delay: 0.8 // Appears after text animations start
+              }}
+            >
+              <ProfileCard
+                name="Mark"
+                title="Software Engineer"
+                handle="markxplorer"
+                status="Vibe Coding"
+                avatarUrl="/avatar.png"
+                showUserInfo={false}
+                enableTilt={true}
+                enableMobileTilt={false}
+                behindGlowEnabled={true}
+                onContactClick={() => console.log('Contact clicked')}
+              />
+            </motion.div>
           </div>
         </div>
       </div>

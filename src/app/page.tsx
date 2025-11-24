@@ -5,6 +5,7 @@ import ProjectBento from '@/components/shared/ProjectBento';
 import TechStack from '@/components/shared/TechStack';
 import Experience from '@/components/shared/Experience';
 import Contact from '@/components/shared/Contact';
+import FavoritePlaylist from '@/components/shared/FavoritePlaylist';
 import Footer from '@/components/shared/Footer';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Experience />
       <TechStack />
       <Contact />
+      <FavoritePlaylist />
       <Footer />
     </main>
   );
