@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Terminal, User, Code, Sparkles } from 'lucide-react';
+import ScrollStream from './ScrollStream';
 
 const About = () => {
   const containerVariants = {
@@ -87,13 +88,13 @@ const About = () => {
                 <h3 className="text-xl font-semibold text-white">My Journey</h3>
               </div>
               
-              <p className="text-muted-foreground leading-relaxed">
-                I'm a passionate software engineering student with a love for creating innovative digital solutions. My journey began in 2022 as a hosting seller and bot creator, which sparked my interest in technology and automation.
-              </p>
-              
-              <p className="text-muted-foreground leading-relaxed">
-                Currently pursuing my studies in Software Engineering, I'm constantly learning new technologies and working on projects that challenge me to grow as a developer. I believe in the power of clean code and beautiful user experiences.
-              </p>
+              <ScrollStream 
+                content={[
+                  "I'm a passionate software engineering student with a love for creating innovative digital solutions. My journey began in 2022 as a hosting seller and bot creator, which sparked my interest in technology and automation.",
+                  "Currently pursuing my studies in Software Engineering, I'm constantly learning new technologies and working on projects that challenge me to grow as a developer. I believe in the power of clean code and beautiful user experiences."
+                ]}
+                className="text-white"
+              />
             </div>
 
             {/* Stats */}

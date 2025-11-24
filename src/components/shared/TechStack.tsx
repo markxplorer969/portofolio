@@ -128,11 +128,10 @@ const TechStack = () => {
             >
               {duplicatedStack.map((tech, index) => {
                 const IconComponent = tech.icon;
-                const originalIndex = index % stack.length;
                 
                 return (
                   <motion.div
-                    key={`tech-${originalIndex}-${tech.name}`}
+                    key={`${tech.name}-${index}`}
                     className="flex items-center space-x-3 px-6 py-4 bg-zinc-900/50 border border-zinc-800/50 rounded-lg hover:border-indigo-500/30 transition-all duration-300 hover:bg-zinc-800/50 group min-w-fit"
                     whileHover={{
                       scale: 1.05,
