@@ -1,9 +1,10 @@
 import Navbar from '@/components/shared/Navbar';
 import Hero from '@/components/shared/Hero';
 import About from '@/components/shared/About';
-import ProjectBento from '@/components/shared/ProjectBento';
+import ProjectList from '@/components/shared/ProjectList';
 import TechStack from '@/components/shared/TechStack';
 import Experience from '@/components/shared/Experience';
+import GithubGraph from '@/components/shared/GithubGraph';
 import Contact from '@/components/shared/Contact';
 import FavoritePlaylist from '@/components/shared/FavoritePlaylist';
 import Footer from '@/components/shared/Footer';
@@ -14,9 +15,10 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
-      <ProjectBento />
+      <ProjectList />
       <Experience />
       <TechStack />
+      <GithubGraph />
       <FavoritePlaylist />
       <Contact />
       <Footer />

@@ -156,3 +156,21 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+/* React Tooltip Styles */
+#react-tooltip {
+  background: rgba(0, 0, 0, 0.9) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  font-size: 12px !important;
+  padding: 8px 12px !important;
+  color: white !important;
+  max-width: 200px !important;
+  text-align: center !important;
+  z-index: 9999 !important;
+}
+
+#react-tooltip::after {
+  border-top-color: rgba(0, 0, 0, 0.9) !important;
+}

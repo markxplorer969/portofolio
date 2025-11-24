@@ -4,7 +4,7 @@
   --pointer-from-center: 0;
   --pointer-from-top: 0.5;
   --pointer-from-left: 0.5;
-  --card-opacity: 0;
+  --card-opacity: 0.6;
   --rotate-x: 0deg;
   --rotate-y: 0deg;
   --background-x: 50%;
@@ -86,8 +86,12 @@
 .pc-inside {
   inset: 0;
   position: absolute;
-  background-image: var(--inner-gradient);
+  background-image: var(--inner-gradient), var(--icon), var(--grain);
   background-color: rgba(0, 0, 0, 0.9);
+  background-size: cover, auto, auto;
+  background-position: center, center, center;
+  background-repeat: no-repeat, repeat, repeat;
+  background-blend-mode: normal, overlay, overlay;
   transform: none;
 }
 

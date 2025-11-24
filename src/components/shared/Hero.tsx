@@ -55,7 +55,7 @@ const RotatingText = () => {
           initial="enter"
           animate="center"
           exit="exit"
-          className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400"
+          className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 font-bold"
         >
           {words[currentIndex]}
         </motion.span>
@@ -132,7 +132,7 @@ const Hero = () => {
   const parallaxScale = 1 + scrollY * 0.0002; // Subtle scale effect
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
       {/* Parallax Background Layers */}
       <motion.div 
         className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950"
@@ -233,7 +233,7 @@ const Hero = () => {
             >
               <Button
                 size="lg"
-                className="relative overflow-hidden group bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-700 hover:via-indigo-700 hover:to-blue-700 text-white px-8 py-4 text-base font-semibold shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 border-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
+                className="relative overflow-hidden group bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-700 hover:via-indigo-700 hover:to-blue-700 text-white px-8 py-4 text-base font-semibold shadow-[0_0_20px_rgba(99,102,241,0.5)] hover:shadow-[0_0_30px_rgba(99,102,241,0.7)] hover:scale-105 transition-all duration-500 transform hover:-translate-y-1 border-0 before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 transition-shadow"
                 asChild
               >
                 <a href="#projects" className="flex items-center gap-3 relative z-10">
@@ -243,9 +243,8 @@ const Hero = () => {
                 </a>
               </Button>
               <Button
-                variant="outline"
                 size="lg"
-                className="relative overflow-hidden group border-2 border-purple-500/50 text-purple-300 hover:text-white hover:border-purple-400 hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-indigo-600/20 backdrop-blur-sm px-8 py-4 text-base font-semibold shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 before:absolute before:inset-0 before:bg-gradient-to-r before:from-purple-600/10 before:to-indigo-600/10 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
+                className="relative overflow-hidden group bg-white/10 border border-white/20 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/40 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 px-8 py-4 text-base font-semibold before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/10 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
                 asChild
               >
                 <a href="#contact" className="flex items-center gap-3 relative z-10">
@@ -258,7 +257,10 @@ const Hero = () => {
           </motion.div>
 
           {/* Right Column - Profile Card with Independent Animation */}
-          <div className="hidden lg:flex justify-center items-center h-[600px]">
+          <div className="hidden lg:flex justify-center items-center h-[600px] relative">
+            {/* Spotlight Glow Behind Profile Card */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/20 blur-[100px] rounded-full -z-10" />
+            
             <motion.div
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
@@ -274,10 +276,14 @@ const Hero = () => {
                 handle="markxplorer"
                 status="Vibe Coding"
                 avatarUrl="/avatar.png"
+                iconUrl="/icon-pattern.png"
+                grainUrl="/grain-texture.png"
                 showUserInfo={false}
                 enableTilt={true}
                 enableMobileTilt={false}
                 behindGlowEnabled={true}
+                behindGlowColor="rgba(99, 102, 241, 0.4)"
+                behindGlowSize="60%"
                 onContactClick={() => console.log('Contact clicked')}
               />
             </motion.div>

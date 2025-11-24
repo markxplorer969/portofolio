@@ -132,7 +132,7 @@ const TechStack = () => {
                 
                 return (
                   <motion.div
-                    key={`${tech.name}-${originalIndex}`}
+                    key={`tech-${originalIndex}-${tech.name}`}
                     className="flex items-center space-x-3 px-6 py-4 bg-zinc-900/50 border border-zinc-800/50 rounded-lg hover:border-indigo-500/30 transition-all duration-300 hover:bg-zinc-800/50 group min-w-fit"
                     whileHover={{
                       scale: 1.05,
