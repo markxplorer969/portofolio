@@ -1,12 +1,42 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Rocket } from 'lucide-react';
+import { Code2, Rocket, Languages } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import ProjectCard from './ProjectCard';
 import { portfolioData } from '@/lib/data';
 
 const Projects = () => {
+  const [isPersian, setIsPersian] = useState(false);
+
+  const toggleLanguage = () => {
+    setIsPersian(!isPersian);
+  };
+
+  const translations = {
+    en: {
+      workBadge: "My Work",
+      workTitle: "Featured Projects",
+      workDescription: "A selection of my recent work, including full-stack applications, automation tools, and AI-powered solutions.",
+      allProjects: "All Projects",
+      exploreMore: "Explore more of my work and experiments",
+      collaboration: "Interested in collaboration?",
+      letsTalk: "Let's talk!"
+    },
+    fa: {
+      workBadge: "کارهای من",
+      workTitle: "پروژه‌های ویژه",
+      workDescription: "انتخابی از کارهای اخیر من، شامل برنامه‌های کامل، ابزارهای خودکار و راه‌حل‌های هوش مصنوعی.",
+      allProjects: "همه پروژه‌ها",
+      exploreMore: "کاوش بیشتر کارها و آزمایش‌های من",
+      collaboration: "علاقه‌مند به همکاری؟",
+      letsTalk: "صحبت کنیم!"
+    }
+  };
+
+  const t = isPersian ? translations.fa : translations.en;
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -51,16 +81,28 @@ const Projects = () => {
             variants={headerVariants}
             className="text-center mb-16"
           >
+            {/* Language Toggle Button */}
+            <div className="flex justify-center mb-6">
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-2 px-4 py-2 bg-zinc-800/50 border border-zinc-700/50 rounded-full text-zinc-300 hover:text-white hover:bg-zinc-700/50 transition-all duration-300"
+              >
+                <Languages className="h-4 w-4" />
+                <span className="text-sm font-medium">
+                  {isPersian ? 'English' : 'فارسی'}
+                </span>
+              </button>
+            </div>
+
             <Badge variant="secondary" className="mb-4 bg-indigo-500/10 text-indigo-400 border-indigo-500/20 px-4 py-2">
               <Code2 className="h-4 w-4 mr-2" />
-              My Work
+              {t.workBadge}
             </Badge>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              Featured Projects
+              {t.workTitle}
             </h2>
             <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              A selection of my recent work, including full-stack applications, 
-              automation tools, and AI-powered solutions.
+              {t.workDescription}
             </p>
           </motion.div>
 
@@ -83,10 +125,10 @@ const Projects = () => {
             >
               <div className="text-center mb-12">
                 <h3 className="text-3xl font-bold text-white mb-4">
-                  All Projects
+                  {t.allProjects}
                 </h3>
                 <p className="text-zinc-400">
-                  Explore more of my work and experiments
+                  {t.exploreMore}
                 </p>
               </div>
               
@@ -110,12 +152,12 @@ const Projects = () => {
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-zinc-800/50 border border-zinc-700/50 rounded-full">
               <Rocket className="h-5 w-5 text-indigo-400" />
               <span className="text-zinc-300">
-                Interested in collaboration? 
+                {t.collaboration}{' '}
                 <a 
                   href="#contact" 
                   className="text-indigo-400 hover:text-indigo-300 ml-1 transition-colors"
                 >
-                  Let's talk!
+                  {t.letsTalk}
                 </a>
               </span>
             </div>

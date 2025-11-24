@@ -17,8 +17,8 @@ export default function Home() {
       <ProjectBento />
       <Experience />
       <TechStack />
-      <Contact />
       <FavoritePlaylist />
+      <Contact />
       <Footer />
     </main>
   );
