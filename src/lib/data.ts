@@ -18,24 +18,44 @@ export const portfolioData: PortfolioData = {
       description: "A comprehensive suite of developer tools powered by Next.js and AI integration to streamline development workflows.",
       tags: ["Next.js", "AI", "TypeScript", "Tailwind CSS"],
       imageUrl: "/projects/marktools.png",
-      repoUrl: "https://github.com/mark/marktools",
-      demoUrl: "https://marktools.dev",
+      repoUrl: "https://wa.me/6285883795285",
+      demoUrl: "https://marktools.web.id",
       featured: true
     },
     {
-      title: "Facebook Live UID Checker",
-      description: "Web scraping tool to verify and check Facebook user IDs from live streams and public profiles.",
-      tags: ["Node.js", "Web Scraping", "Puppeteer", "Express"],
-      imageUrl: "/projects/fb-uid-checker.png",
-      repoUrl: "https://github.com/mark/fb-uid-checker",
+      title: "Simple Payment",
+      description: "Modern payment gateway solution with secure transactions and intuitive user interface.",
+      tags: ["Next.js", "Payment", "TypeScript", "Web Development"],
+      imageUrl: "/projects/payment.png",
+      repoUrl: "https://github.com/MarkXplorer/markpay-web",
+      demoUrl: "https://payment.markxplorer.my.id",
       featured: true
     },
     {
-      title: "Auto.js Scripts",
-      description: "Collection of automation scripts for mobile tasks using Auto.js framework to improve productivity.",
-      tags: ["JavaScript", "Auto.js", "Mobile Automation", "Android"],
-      imageUrl: "/projects/autojs-scripts.png",
-      repoUrl: "https://github.com/mark/autojs-scripts",
+      title: "Norvus Community",
+      description: "Community platform for developers and tech enthusiasts to connect and collaborate.",
+      tags: ["Community", "Web Platform", "Social", "Networking"],
+      imageUrl: "/projects/norvus.png",
+      repoUrl: "https://wa.me/6285883795285",
+      demoUrl: "https://www.norvuscomunity.xyz",
+      featured: true
+    },
+    {
+      title: "Fake Call Generator",
+      description: "Fun application for generating realistic fake call interfaces for pranks and entertainment.",
+      tags: ["React", "JavaScript", "Mobile", "Entertainment"],
+      imageUrl: "/projects/fakecall.png",
+      repoUrl: "https://github.com/markxplorer969/fakecall.git",
+      demoUrl: "https://fakecall.markxplorer.my.id",
+      featured: false
+    },
+    {
+      title: "QC iPhone Web",
+      description: "Quality control web application for iPhone testing and validation processes.",
+      tags: ["Testing", "Quality Control", "Web App", "iPhone"],
+      imageUrl: "/projects/qc.png",
+      repoUrl: "https://github.com/markxplorer969/QcIphong.git",
+      demoUrl: "https://qciphong.markxplorer.my.id",
       featured: false
     }
   ],

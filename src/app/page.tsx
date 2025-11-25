@@ -1,7 +1,7 @@
 import Navbar from '@/components/shared/Navbar';
 import Hero from '@/components/shared/Hero';
 import About from '@/components/shared/About';
-import ProjectList from '@/components/shared/ProjectList';
+import Projects from '@/components/shared/Projects';
 import TechStack from '@/components/shared/TechStack';
 import Experience from '@/components/shared/Experience';
 import GithubGraph from '@/components/shared/GithubGraph';
@@ -15,7 +15,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
-      <ProjectList />
+      <Projects />
       <Experience />
       <TechStack />
       <GithubGraph />
