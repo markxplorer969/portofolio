@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import SkipLink from "@/components/accessibility/SkipLink";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -45,6 +46,25 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://markxplorer.me",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#09090b',
+  colorScheme: 'dark',
 };
 
 export default function RootLayout({
@@ -53,12 +73,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
         className={`${inter.variable} font-sans antialiased bg-zinc-950 text-zinc-100`}
       >
-        {/* Premium Noise Texture */}
-        <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-50">
+        <SkipLink />
+        
+        {/* Premium Noise Texture - Optimized */}
+        <div 
+          className="fixed inset-0 pointer-events-none opacity-[0.02] z-50" 
+          aria-hidden="true"
+        >
           <div 
             className="absolute inset-0 bg-repeat" 
             style={{

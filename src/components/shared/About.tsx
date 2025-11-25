@@ -42,9 +42,9 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 relative">
+    <section id="about" className="py-20 relative" aria-labelledby="about-heading">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-zinc-900/30 to-zinc-950" />
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-zinc-900/30 to-zinc-950" aria-hidden="true" />
       
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -54,8 +54,9 @@ const About = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-16"
         >
-          {/* Section Header */}
+          {/* Section Header - Proper heading hierarchy */}
           <motion.h2
+            id="about-heading"
             variants={itemVariants}
             className="text-4xl sm:text-5xl font-bold text-white mb-4"
           >
