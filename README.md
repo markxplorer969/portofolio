@@ -1,141 +1,116 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# ⚡ Mark's Portfolio | Vibe Coder Edition
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+![Project Banner](https://placehold.co/1200x400/09090b/6366f1?text=Vibe+Coder+Portfolio)
 
-## ✨ Technology Stack
+> A high-performance, immersive personal portfolio website built with **Next.js 14**, **Tailwind CSS**, and **Framer Motion**. Designed for Software Engineers who value aesthetics, interactivity, and clean architecture.
 
-This scaffold provides a robust foundation built with:
+[![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38bdf8?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animation-purple?style=for-the-badge&logo=framer)](https://www.framer.com/motion/)
 
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+## ✨ Key Features
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+This isn't just a static site. It's an interactive experience featuring:
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+* **💎 3D Holographic Profile:** A physics-based tilt card with holographic shine and mouse-tracking effects (Pure TypeScript & Framer Motion).
+* **🎵 "Soundtrack of Code" Player:** A fully functional music player with:
+    * Real-time seekable slider.
+    * Spinning Vinyl animation.
+    * Local audio playback logic.
+* **💻 VS Code Contact Form:** A contact section designed to look like a code editor where users "run a script" to send messages.
+* **🗂️ IDE-Style Experience:** Experience section organized like vertical file tabs in a text editor.
+* **🍎 Floating Dock:** macOS-style navigation dock with magnification effects.
+* **🚀 Interactive Project Grid:** Premium glassmorphism cards with click-to-reveal overlay logic.
+* **⚡ Performance Optimized:**
+    * `next/image` for LCP optimization.
+    * Dynamic imports for heavy components.
+    * Accessibility (A11y) score of 100.
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
+## 🛠️ Tech Stack
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+-   **Framework:** [Next.js 14](https://nextjs.org/) (App Router)
+-   **Language:** [TypeScript](https://www.typescriptlang.org/)
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+-   **Components:** [Shadcn UI](https://ui.shadcn.com/) (Radix Primitives)
+-   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+-   **Icons:** [Lucide React](https://lucide.dev/)
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
+## 🚀 Getting Started
 
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
+Follow these steps to run the project locally:
 
-## 🎯 Why This Scaffold?
-
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
-
-## 🚀 Quick Start
-
+### 1. Clone the repository
 ```bash
-# Install dependencies
+git clone [https://github.com/username/mark-portfolio.git](https://github.com/username/mark-portfolio.git)
+cd mark-portfolio
+2. Install Dependencies
+Bash
+
 npm install
+# or
+yarn install
+3. Download Audio Assets (Important!)
+This project uses local MP3 files for the music player to ensure zero-latency playback. Run the included script to fetch them:
 
-# Start development server
+Bash
+
+node scripts/download-music.js
+This will create a public/music/ folder and download the tracks automatically.
+
+4. Run the Development Server
+Bash
+
 npm run dev
+Open http://localhost:3000 with your browser to see the result.
 
-# Build for production
-npm run build
+📂 Project Structure
+root/
+├── app/                  # Next.js App Router
+│   ├── layout.tsx        # Root Layout (Fonts, Metadata)
+│   └── page.tsx          # Main Landing Page (Assembly)
+├── components/
+│   ├── ui/               # Shadcn UI Base Components
+│   └── shared/           # Custom "Vibe" Components
+│       ├── Hero.tsx      # Main Intro with 3D Card
+│       ├── About.tsx     # Scroll Reveal Text & Terminal
+│       ├── Projects.tsx  # Grid with Hover Overlay
+│       ├── Experience.tsx # IDE Tabs Layout
+│       ├── SpotifyWidget.tsx # Music Player
+│       └── Contact.tsx   # VS Code Form
+├── lib/
+│   ├── data.ts           # Single Source of Truth (Edit content here!)
+│   └── utils.ts          # Helper functions
+├── public/
+│   ├── music/            # Downloaded MP3s
+│   └── avatar.png        # Your Profile Picture
+└── scripts/              # Utility scripts (e.g., music downloader)
+🎨 Customization
+All text content, project data, and experience history are managed in a single file for easy maintenance.
 
-# Start production server
-npm start
-```
+Edit lib/data.ts to update:
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+Profile Bio & Role
 
-## 🤖 Powered by Z.ai
+Project List (Title, Description, Links)
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+Experience History
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
+Music Playlist Metadata
 
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
+🚢 Deployment
+This project is optimized for Vercel.
 
-## 📁 Project Structure
+Push your code to GitHub.
 
-```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
-```
+Import the repository in Vercel.
 
-## 🎨 Available Features & Components
+The scripts/download-music.js script should be run during the build process if you don't commit MP3s to git.
 
-This scaffold includes a comprehensive set of modern web development tools:
+Recommended: Add node scripts/download-music.js && next build as your Build Command in Vercel.
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+🤝 Contribution
+Feel free to fork this repository and use it as a template for your own portfolio! If you find a bug or have a suggestion, open an issue.
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
-
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
-
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
-
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
-
-## 🤝 Get Started with Z.ai
-
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
-
----
-
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+📄 License
+MIT License © 2025 Mark Xplorer
