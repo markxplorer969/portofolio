@@ -102,8 +102,9 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-zinc-300 hover:text-indigo-400 transition-colors"
+                  aria-label="Visit Instagram Profile"
                 >
-                  <Instagram className="w-5 h-5" />
+                  <Instagram className="w-5 h-5" aria-hidden="true" />
                   <span>{portfolioData.contact.instagram}</span>
                 </a>
                 <a 
@@ -111,8 +112,9 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-zinc-300 hover:text-indigo-400 transition-colors"
+                  aria-label="Visit TikTok Profile"
                 >
-                  <Send className="w-5 h-5" />
+                  <Send className="w-5 h-5" aria-hidden="true" />
                   <span>{portfolioData.contact.tiktok}</span>
                 </a>
                 <a 
@@ -120,8 +122,9 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-zinc-300 hover:text-indigo-400 transition-colors"
+                  aria-label="Visit GitHub Profile"
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-5 h-5" aria-hidden="true" />
                   <span>{portfolioData.contact.github}</span>
                 </a>
                 <a 
@@ -129,28 +132,11 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-zinc-300 hover:text-indigo-400 transition-colors"
+                  aria-label="Visit Telegram Profile"
                 >
-                  <Send className="w-5 h-5" />
+                  <Send className="w-5 h-5" aria-hidden="true" />
                   <span>{portfolioData.contact.telegram}</span>
                 </a>
-              </div>
-            </div>
-
-            <div className="bg-zinc-900/50 backdrop-blur-sm rounded-lg p-6 border border-zinc-800">
-              <h3 className="text-xl font-semibold mb-4 text-indigo-400">Quick Stats</h3>
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div>
-                  <div className="text-2xl font-bold text-indigo-400">2+</div>
-                  <div className="text-sm text-zinc-400">Years</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-indigo-400">10+</div>
-                  <div className="text-sm text-zinc-400">Projects</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-indigo-400">15+</div>
-                  <div className="text-sm text-zinc-400">Tech</div>
-                </div>
               </div>
             </div>
           </motion.div>
@@ -183,20 +169,20 @@ export default function Contact() {
 
               {/* Editor Content */}
               <div className="p-4 font-mono text-sm">
-                <div className="text-zinc-500">
+                <div className="text-zinc-400">
                   <span className="text-purple-400">import</span>
                   <span className="text-green-400"> React</span>
                   <span className="text-purple-400"> from</span>
                   <span className="text-green-400"> 'react'</span>;
                 </div>
-                <div className="text-zinc-500">
+                <div className="text-zinc-400">
                   <span className="text-purple-400">import</span>
                   <span className="text-green-400"> {'{'} Mail, MapPin {'}'}</span>
                   <span className="text-purple-400"> from</span>
                   <span className="text-green-400"> 'lucide-react'</span>;
                 </div>
                 <br />
-                <div className="text-zinc-500">
+                <div className="text-zinc-400">
                   <span className="text-purple-400">const</span>
                   <span className="text-blue-400"> ContactForm</span>
                   <span className="text-purple-400"> =</span>
@@ -205,7 +191,7 @@ export default function Contact() {
                   <span className="text-purple-400"> {'{'}</span>
                 </div>
                 <div className="ml-4">
-                  <div className="text-zinc-500">
+                  <div className="text-zinc-400">
                     <span className="text-purple-400">const</span>
                     <span className="text-blue-400"> [formData, setFormData]</span>
                     <span className="text-purple-400"> =</span>
@@ -213,43 +199,52 @@ export default function Contact() {
                     <span className="text-purple-400">({'{'}</span>
                   </div>
                   <div className="ml-4">
-                    <div className="text-zinc-500">
+                    <div className="text-zinc-400">
                       <span className="text-orange-400">name</span>
                       <span className="text-zinc-400">: </span>
                       <input
+                        id="name"
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
                         className="bg-zinc-800 border border-zinc-700 rounded px-2 py-1 text-zinc-100 w-48 outline-none focus:border-indigo-500"
                         placeholder="Your name"
+                        aria-label="Your name"
+                        aria-required="true"
                       />
                     </div>
                     <div className="text-zinc-500 mt-2">
                       <span className="text-orange-400">email</span>
                       <span className="text-zinc-400">: </span>
                       <input
+                        id="email"
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
                         className="bg-zinc-800 border border-zinc-700 rounded px-2 py-1 text-zinc-100 w-48 outline-none focus:border-indigo-500"
                         placeholder="your@email.com"
+                        aria-label="Your email address"
+                        aria-required="true"
                       />
                     </div>
                     <div className="text-zinc-500 mt-2">
                       <span className="text-orange-400">message</span>
                       <span className="text-zinc-400">: </span>
                       <textarea
+                        id="message"
                         name="message"
                         value={formData.message}
                         onChange={handleInputChange}
                         className="bg-zinc-800 border border-zinc-700 rounded px-2 py-1 text-zinc-100 w-64 h-20 outline-none focus:border-indigo-500 resize-none"
                         placeholder="Your message..."
+                        aria-label="Your message"
+                        aria-required="true"
                       />
                     </div>
                   </div>
-                  <div className="text-zinc-500">
+                  <div className="text-zinc-400">
                     <span className="text-purple-400">{'}'})</span>;
                   </div>
                 </div>
@@ -258,8 +253,9 @@ export default function Contact() {
                   <button
                     onClick={handleSubmit}
                     className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded flex items-center gap-2 transition-colors"
+                    aria-label="Send contact message"
                   >
-                    <Send className="w-4 h-4" />
+                    <Send className="w-4 h-4" aria-hidden="true" />
                     Send Message
                   </button>
                 </div>

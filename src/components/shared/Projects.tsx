@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, Lock } from "lucide-react";
+import Image from "next/image";
 import { portfolioData } from "@/lib/data";
 
 const PROJECTS = portfolioData.projects;
@@ -96,10 +97,14 @@ export default function Projects() {
             >
               {/* Image Area */}
               <div className="relative aspect-video overflow-hidden cursor-pointer" onClick={() => handleProjectClick(index)}>
-                <img
+                <Image
                   src={project.imageUrl}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/8A8A"
                 />
                 
                 {/* Overlay */}
@@ -116,8 +121,9 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white border-0 hover:scale-105 px-6 py-3 rounded-full flex items-center gap-2 transition-all duration-300"
+                      aria-label={`View ${project.title} demo`}
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-4 h-4" aria-hidden="true" />
                       Demo
                     </a>
                   )}
@@ -130,11 +136,12 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       className="bg-transparent border border-white text-white hover:bg-white hover:text-black rounded-full px-6 py-3 flex items-center gap-2 transition-colors"
+                      aria-label={`View ${project.title} source code`}
                     >
                       {project.repoUrl.includes("wa.me") ? (
-                        <Lock className="w-4 h-4" />
+                        <Lock className="w-4 h-4" aria-hidden="true" />
                       ) : (
-                        <Github className="w-4 h-4" />
+                        <Github className="w-4 h-4" aria-hidden="true" />
                       )}
                       Code
                     </a>

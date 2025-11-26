@@ -139,7 +139,7 @@ const TechStack = () => {
                     }}
                   >
                     <IconComponent 
-                      className="w-8 h-8 text-zinc-500 group-hover:text-indigo-400 transition-colors duration-300" 
+                      className="w-8 h-8 text-zinc-400 group-hover:text-indigo-400 transition-colors duration-300" 
                     />
                     <span className="text-zinc-400 group-hover:text-indigo-400 font-medium transition-colors duration-300 whitespace-nowrap">
                       {tech.name}

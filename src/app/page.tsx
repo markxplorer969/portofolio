@@ -1,16 +1,38 @@
+'use client';
+
 import Navbar from '@/components/shared/Navbar';
 import Hero from '@/components/shared/Hero';
-import { lazy, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 
-// Lazy load components that are below the fold
-const About = lazy(() => import('@/components/shared/About'));
-const Projects = lazy(() => import('@/components/shared/Projects'));
-const TechStack = lazy(() => import('@/components/shared/TechStack'));
-const Experience = lazy(() => import('@/components/shared/Experience'));
-const Contact = lazy(() => import('@/components/shared/Contact'));
-const FavoritePlaylist = lazy(() => import('@/components/shared/FavoritePlaylist'));
-const Footer = lazy(() => import('@/components/shared/Footer'));
+// Dynamic imports for below-the-fold sections to reduce initial bundle size
+const About = dynamic(() => import('@/components/shared/About'), {
+  loading: () => <SectionLoader />
+});
+
+const Projects = dynamic(() => import('@/components/shared/Projects'), {
+  loading: () => <SectionLoader />
+});
+
+const TechStack = dynamic(() => import('@/components/shared/TechStack'), {
+  loading: () => <SectionLoader />
+});
+
+const Experience = dynamic(() => import('@/components/shared/Experience'), {
+  loading: () => <SectionLoader />
+});
+
+const Contact = dynamic(() => import('@/components/shared/Contact'), {
+  loading: () => <SectionLoader />
+});
+
+const FavoritePlaylist = dynamic(() => import('@/components/shared/FavoritePlaylist'), {
+  loading: () => <SectionLoader />
+});
+
+const Footer = dynamic(() => import('@/components/shared/Footer'), {
+  loading: () => <SectionLoader />
+});
 
 // Loading fallback component
 const SectionLoader = () => (
@@ -25,34 +47,14 @@ export default function Home() {
       <Navbar />
       <Hero />
       
-      {/* Lazy loaded sections with loading states */}
-      <Suspense fallback={<SectionLoader />}>
-        <About />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <Projects />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <Experience />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <TechStack />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <FavoritePlaylist />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <Contact />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <Footer />
-      </Suspense>
+      {/* Dynamically loaded sections with loading states */}
+      <About />
+      <Projects />
+      <Experience />
+      <TechStack />
+      <FavoritePlaylist />
+      <Contact />
+      <Footer />
     </main>
   );
 }

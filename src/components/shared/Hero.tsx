@@ -224,37 +224,14 @@ const Hero = () => {
         />
       )}
       
-      {/* Floating Particles - Optimized */}
-      {!shouldReduceMotion && (
-        <motion.div 
-          className="absolute inset-0"
-          style={{
-            y: parallaxY * 1.2,
-          }}
-          aria-hidden="true"
-        >
-          {[...Array(8)].map((_, i) => ( // Reduced from 20 to 8 for performance
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-indigo-400/20 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                scale: 1 + Math.random() * 2,
-              }}
-              animate={{
-                opacity: [0.2, 0.8, 0.2],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </motion.div>
-      )}
+      {/* Optimized Background Gradient - Replaced particles with CSS gradient */}
+      <div 
+        className="absolute inset-0 opacity-30"
+        style={{
+          background: 'radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 40%), radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 30%)',
+        }}
+        aria-hidden="true"
+      />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Grid Layout - Mobile: Single Column, Desktop: 2 Columns */}
@@ -383,7 +360,7 @@ const Hero = () => {
             repeat: Infinity,
             delay: 2,
           }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-zinc-500"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-zinc-400"
           aria-hidden="true"
         >
           <div className="flex flex-col items-center space-y-2">

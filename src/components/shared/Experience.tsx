@@ -107,7 +107,7 @@ const Experience = () => {
                       }`}
                     >
                       <div className="font-medium text-sm">{exp.year}</div>
-                      <div className="text-xs text-zinc-500 mt-1">{exp.company}</div>
+                      <div className="text-xs text-zinc-400 mt-1">{exp.company}</div>
                     </button>
                   ))}
                 </nav>
@@ -166,7 +166,7 @@ const Experience = () => {
 
                   {/* Tech Stack */}
                   <div>
-                    <h4 className="text-sm font-medium text-zinc-500 mb-3">Technologies Used</h4>
+                    <h4 className="text-sm font-medium text-zinc-400 mb-3">Technologies Used</h4>
                     <div className="flex flex-wrap gap-2">
                       {currentExperience.skills.map((skill, skillIndex) => (
                         <motion.div

@@ -174,7 +174,7 @@ const SpotifyWidget = ({ onPlayStateChange }: { onPlayStateChange?: (isPlaying: 
           <div className="relative z-10 w-full h-full rounded-md shadow-lg">
             <img 
               src={currentTrack.image} 
-              alt="Album"
+              alt={`Album cover for ${currentTrack.title} by ${currentTrack.artist}`}
               className="w-full h-full object-cover rounded-md"
             />
           </div>
@@ -190,18 +190,30 @@ const SpotifyWidget = ({ onPlayStateChange }: { onPlayStateChange?: (isPlaying: 
           </div>
 
           {/* Tracks */}
-          <div className="space-y-2 text-sm">
+          <div className="space-y-2 text-sm" role="list">
             {TRACKS.map((track, index) => (
               <div 
                 key={index}
+                role="option"
                 className={`flex items-center gap-3 ${index === currentTrackIndex ? 'text-white font-medium' : 'text-zinc-400'} cursor-pointer hover:text-white transition-colors`}
                 onClick={() => {
                   setCurrentTrackIndex(index);
                   setIsPlaying(false);
                   setCurrentTime(0);
                 }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setCurrentTrackIndex(index);
+                    setIsPlaying(false);
+                    setCurrentTime(0);
+                  }
+                }}
+                tabIndex={0}
+                aria-label={`Play ${track.title} by ${track.artist}`}
+                aria-selected={index === currentTrackIndex}
               >
-                <span className={index === currentTrackIndex ? 'text-green-500 w-4' : 'w-4'}>
+                <span className={index === currentTrackIndex ? 'text-green-500 w-4' : 'w-4'} aria-hidden="true">
                   {index + 1}
                 </span>
                 <div className="flex flex-col leading-tight">
@@ -209,7 +221,7 @@ const SpotifyWidget = ({ onPlayStateChange }: { onPlayStateChange?: (isPlaying: 
                   <span className="text-[10px] text-zinc-400 font-normal">{track.artist}</span>
                 </div>
                 {track.explicit && (
-                  <span className="bg-zinc-600 text-[8px] px-1 rounded text-zinc-200">E</span>
+                  <span className="bg-zinc-600 text-[8px] px-1 rounded text-zinc-200" aria-label="Explicit content">E</span>
                 )}
               </div>
             ))}
@@ -236,6 +248,11 @@ const SpotifyWidget = ({ onPlayStateChange }: { onPlayStateChange?: (isPlaying: 
             onTouchStart={handleMouseDown}
             onTouchEnd={handleMouseUp}
             className="w-full h-1 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-green-500 hover:h-1.5 transition-all"
+            aria-label="Seek Progress"
+            aria-valuemin={0}
+            aria-valuemax={duration || 100}
+            aria-valuenow={currentTime}
+            aria-valuetext={`Current time: ${formatTime(currentTime)} of ${formatTime(duration)}`}
             style={{
               backgroundSize: `${duration > 0 ? (currentTime / duration) * 100 : 0}% 100%`,
               background: `linear-gradient(to right, #10b981 ${duration > 0 ? (currentTime / duration) * 100 : 0}%, #525252 ${duration > 0 ? (currentTime / duration) * 100 : 0}%)`
@@ -247,19 +264,31 @@ const SpotifyWidget = ({ onPlayStateChange }: { onPlayStateChange?: (isPlaying: 
           </div>
         </div>
 
-        {/* Buttons */}
-        <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between">
           <div className="flex items-center gap-4 text-zinc-400">
-            <Shuffle className="w-4 h-4 hover:text-white transition-colors cursor-pointer" />
+            <Shuffle 
+              className="w-4 h-4 hover:text-white transition-colors cursor-pointer" 
+              aria-label="Shuffle tracks"
+            />
             <SkipBack 
               className="w-5 h-5 hover:text-white transition-colors cursor-pointer" 
               onClick={playPrevious}
+              aria-label="Previous Track"
             />
           </div>
 
           <div 
             className="bg-white rounded-full p-3 hover:scale-105 transition-transform cursor-pointer"
             onClick={togglePlayPause}
+            role="button"
+            tabIndex={0}
+            aria-label={isPlaying ? "Pause" : "Play"}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                togglePlayPause();
+              }
+            }}
           >
             {isPlaying ? (
               <Pause className="w-6 h-6 text-black fill-current" />
@@ -272,8 +301,12 @@ const SpotifyWidget = ({ onPlayStateChange }: { onPlayStateChange?: (isPlaying: 
             <SkipForward 
               className="w-5 h-5 hover:text-white transition-colors cursor-pointer" 
               onClick={playNext}
+              aria-label="Next Track"
             />
-            <Plus className="w-4 h-4 hover:text-white transition-colors cursor-pointer" />
+            <Plus 
+              className="w-4 h-4 hover:text-white transition-colors cursor-pointer" 
+              aria-label="Add to playlist"
+            />
           </div>
         </div>
       </div>
